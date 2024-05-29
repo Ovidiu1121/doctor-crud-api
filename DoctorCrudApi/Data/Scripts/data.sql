@@ -1,0 +1,10 @@
+﻿insert into doctor (id, name, type, patients) values (1, 'Filbert', 'dermatolog', 13);
+insert into doctor (id, name, type, patients) values (2, 'Millie', 'cardiolog', 10);
+insert into doctor (id, name, type, patients) values (3, 'Leeland', 'cardiolog', 15);
+insert into doctor (id, name, type, patients) values (4, 'Merill', 'oftalmolog', 1);
+insert into doctor (id, name, type, patients) values (5, 'Cart', 'oftalmolog', 7);
+insert into doctor (id, name, type, patients) values (6, 'Queenie', 'neurologist', 10);
+insert into doctor (id, name, type, patients) values (7, 'Colan', 'neurologist', 9);
+insert into doctor (id, name, type, patients) values (8, 'Onida', 'oftalmolog', 18);
+insert into doctor (id, name, type, patients) values (9, 'Aloin', 'dentist', 6);
+insert into doctor (id, name, type, patients) values (10, 'Gaylor', 'neurologist', 2);
