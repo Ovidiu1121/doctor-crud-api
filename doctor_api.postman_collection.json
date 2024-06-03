@@ -135,6 +135,183 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "DoctorExistsById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7111/api/v1/Doctor/doctorExistsById/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7111",
+					"path": [
+						"api",
+						"v1",
+						"Doctor",
+						"doctorExistsById",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DoctorExistsByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7111/api/v1/Doctor/doctorExistsByName/Cart",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7111",
+					"path": [
+						"api",
+						"v1",
+						"Doctor",
+						"doctorExistsByName",
+						"Cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SortByPatientsAsc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7111/api/v1/Doctor/sortedByPatientsAsc",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7111",
+					"path": [
+						"api",
+						"v1",
+						"Doctor",
+						"sortedByPatientsAsc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SortByPatientsDesc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7111/api/v1/Doctor/sortedByPatientsDesc",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7111",
+					"path": [
+						"api",
+						"v1",
+						"Doctor",
+						"sortedByPatientsDesc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NameStartsWithPrefix",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7111/api/v1/Doctor/nameStartsWith/Lee",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7111",
+					"path": [
+						"api",
+						"v1",
+						"Doctor",
+						"nameStartsWith",
+						"Lee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByPatientsInterval",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7111/api/v1/Doctor/allByPatientsInterval?minPatients=5&maxPatients=10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7111",
+					"path": [
+						"api",
+						"v1",
+						"Doctor",
+						"allByPatientsInterval"
+					],
+					"query": [
+						{
+							"key": "minPatients",
+							"value": "5"
+						},
+						{
+							"key": "maxPatients",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByTypeWithMinPatients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7111/api/v1/Doctor/allByTypeWithMinPatients?type=oftalmolog&minPatients=11",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7111",
+					"path": [
+						"api",
+						"v1",
+						"Doctor",
+						"allByTypeWithMinPatients"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "oftalmolog"
+						},
+						{
+							"key": "minPatients",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

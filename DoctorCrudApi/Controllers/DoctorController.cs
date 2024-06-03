@@ -46,6 +46,34 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
+        public override async Task<ActionResult<bool>> DoctorExistsByIdAsync([FromRoute] int id)
+        {
+            try
+            {
+                var result = await _doctorQueryService.DoctorExistsByIdAsync(id);
+
+                return Accepted("", result);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        public override async Task<ActionResult<bool>> DoctorExistsByNameAsync([FromRoute] string name)
+        {
+            try
+            {
+                var result = await _doctorQueryService.DoctorExistsByNameAsync(name);
+
+                return Accepted("", result);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         public override async Task<ActionResult<IEnumerable<Doctor>>> GetAll()
         {
             try
@@ -59,11 +87,89 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
+        public override async Task<ActionResult<IEnumerable<Doctor>>> GetAllSortedByPatientsAsc()
+        {
+            try
+            {
+                var doctors = await _doctorQueryService.GetAllSortedByPatientsAscAsync();
+                return Ok(doctors);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        public override async Task<ActionResult<IEnumerable<Doctor>>> GetAllSortedByPatientsDesc()
+        {
+            try
+            {
+                var doctors = await _doctorQueryService.GetAllSortedByPatientsDescAsync();
+                return Ok(doctors);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        public override async Task<ActionResult<Doctor>> GetByNameRoute([FromRoute] string name)
+        {
+            try
+            {
+                var doc = await _doctorQueryService.GetByNameAsync(name);
+                return Ok(doc);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        public override async Task<ActionResult<IEnumerable<Doctor>>> GetByNameStartingWith(string prefix)
+        {
+            try
+            {
+                var doctors = await _doctorQueryService.GetByNameStartingWithAsync(prefix);
+                return Ok(doctors);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        public override async Task<ActionResult<IEnumerable<Doctor>>> GetByPatientInterval(int minPatients, int maxPatients)
+        {
+            try
+            {
+                var doctors = await _doctorQueryService.GetByPatientIntervalAsync(minPatients, maxPatients);
+                return Ok(doctors);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         public override async Task<ActionResult<Doctor>> GetByTypeRoute([FromRoute] string type)
         {
             try
             {
-                var doctors = await _doctorQueryService.GetByType(type);
+                var doc = await _doctorQueryService.GetByType(type);
+                return Ok(doc);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        public override async Task<ActionResult<IEnumerable<Doctor>>> GetByTypeWithMinPatients(string type, int minPatients)
+        {
+            try
+            {
+                var doctors = await _doctorQueryService.GetByTypeWithMinPatientsAsync(type, minPatients);
                 return Ok(doctors);
             }
             catch (ItemDoesNotExist ex)
