@@ -5,7 +5,12 @@
       "ProjectGuid": "dd67326c-402a-476d-bf7b-40954c454d32",
       "DisplayName": "DoctorCrudApi",
       "ColorIndex": 0
+    },
+    "483456f3-96b5-4ba8-b627-ef4fe119b351": {
+      "ProjectGuid": "483456f3-96b5-4ba8-b627-ef4fe119b351",
+      "DisplayName": "tests",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

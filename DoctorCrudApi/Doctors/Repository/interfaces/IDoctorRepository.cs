@@ -19,5 +19,5 @@ namespace DoctorCrudApi.Doctors.Repository.interfaces
         Task<IEnumerable<Doctor>> GetByTypeWithMinPatientsAsync(string type, int minPatients);
         Task<bool> DoctorExistsByIdAsync(int id);
         Task<bool> DoctorExistsByNameAsync(string name);
-    }
+    } 
 }

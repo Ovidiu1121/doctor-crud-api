@@ -19,7 +19,7 @@ namespace DoctorCrudApi.Doctors.Service
         {
             bool result = await _repository.DoctorExistsByIdAsync(id);
 
-            if (result.Equals(null)){
+            if (result.Equals(false)){
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
 
@@ -30,7 +30,7 @@ namespace DoctorCrudApi.Doctors.Service
         {
             bool result = await _repository.DoctorExistsByNameAsync(name);
 
-            if (result.Equals(null))
+            if (result.Equals(false))
             {
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
