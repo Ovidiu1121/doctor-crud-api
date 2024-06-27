@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoctorCrudApi.Dto;
 
 namespace tests.Helpers
 {
     public class TestDoctorFactory
     {
 
-        public static Doctor CreateDoctor(int id)
+        public static DoctorDto CreateDoctor(int id)
         {
-            return new Doctor
+            return new DoctorDto
             {
                 Id = id,
                 Name="Alex"+id,
@@ -21,13 +22,13 @@ namespace tests.Helpers
             };
         }
 
-        public static List<Doctor> CreateDoctors(int count)
+        public static ListDoctorDto CreateDoctors(int count)
         {
-            List<Doctor> doctors=new List<Doctor>();
-
+            ListDoctorDto doctors=new ListDoctorDto();
+            
             for(int i = 0; i<count; i++)
             {
-                doctors.Add(CreateDoctor(i));
+                doctors.doctorList.Add(CreateDoctor(i));
             }
             return doctors;
         }

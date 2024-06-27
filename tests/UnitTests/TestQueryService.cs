@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoctorCrudApi.Dto;
 using tests.Helpers;
 using Xunit;
 
@@ -30,7 +31,7 @@ namespace tests.UnitTests
         [Fact]
         public async Task GetAll_ItemsDoNotExist()
         {
-            _mock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(new List<Doctor>());
+            _mock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(new ListDoctorDto());
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.GetAll());
 
@@ -49,7 +50,7 @@ namespace tests.UnitTests
             var result = await _service.GetAll();
 
             Assert.NotNull(result);
-            Assert.Contains(doctors[1], result);
+            Assert.Contains(doctors.doctorList[1], result.doctorList);
 
         }
 
@@ -57,7 +58,7 @@ namespace tests.UnitTests
         public async Task GetById_ItemDoesNotExist()
         {
 
-            _mock.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync((Doctor)null);
+            _mock.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync((DoctorDto)null);
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(()=>_service.GetById(1));
 
@@ -84,7 +85,7 @@ namespace tests.UnitTests
         public async Task GetByName_ItemDoesNotExist()
         {
 
-            _mock.Setup(repo => repo.GetByNameAsync("")).ReturnsAsync((Doctor)null);
+            _mock.Setup(repo => repo.GetByNameAsync("")).ReturnsAsync((DoctorDto)null);
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.GetByNameAsync(""));
 
@@ -113,7 +114,7 @@ namespace tests.UnitTests
         public async Task GetByType_ItemDoesNotExist()
         {
 
-            _mock.Setup(repo => repo.GetByTypeAsync("")).ReturnsAsync((Doctor)null);
+            _mock.Setup(repo => repo.GetByTypeAsync("")).ReturnsAsync(new ListDoctorDto());
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.GetByType(""));
 
@@ -124,9 +125,7 @@ namespace tests.UnitTests
         [Fact]
         public async Task GetByType_ReturnDoctor()
         {
-            var doctor = TestDoctorFactory.CreateDoctor(3);
-
-            doctor.Type="test";
+            var doctor = TestDoctorFactory.CreateDoctors(3);
 
             _mock.Setup(repo => repo.GetByTypeAsync("test")).ReturnsAsync(doctor);
 
@@ -135,14 +134,13 @@ namespace tests.UnitTests
             Assert.NotNull(result);
             Assert.Equal(doctor, result);
 
-
         }
 
         [Fact]
         public async Task GetAllSortedByPatientsAscAsync_ItemsDoNotExist()
         {
 
-            _mock.Setup(repo => repo.GetAllSortedByPatientsAscAsync()).ReturnsAsync(new List<Doctor>());
+            _mock.Setup(repo => repo.GetAllSortedByPatientsAscAsync()).ReturnsAsync(new ListDoctorDto());
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(()=>_service.GetAllSortedByPatientsAscAsync());
 
@@ -161,7 +159,7 @@ namespace tests.UnitTests
             var result = await _service.GetAllSortedByPatientsAscAsync();
 
             Assert.NotNull(result);
-            Assert.Contains(doctors[1], result);
+            Assert.Contains(doctors.doctorList[1], result.doctorList);
 
         }
 
@@ -169,7 +167,7 @@ namespace tests.UnitTests
         public async Task GetAllSortedByPatientsDescAsync_ItemsDoNotExist()
         {
 
-            _mock.Setup(repo=>repo.GetAllSortedByPatientsDescAsync()).ReturnsAsync(new List<Doctor>());
+            _mock.Setup(repo=>repo.GetAllSortedByPatientsDescAsync()).ReturnsAsync(new ListDoctorDto());
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.GetAllSortedByPatientsDescAsync());
 
@@ -188,7 +186,7 @@ namespace tests.UnitTests
             var result= await _service.GetAllSortedByPatientsDescAsync();
 
             Assert.NotNull(result);
-            Assert.Contains(doctors[1], result);
+            Assert.Contains(doctors.doctorList[1], result.doctorList);
 
         }
 
@@ -247,7 +245,7 @@ namespace tests.UnitTests
         [Fact]
         public async Task GetByNameStartingWithAsync_ItemDoesNotExist()
         {
-            _mock.Setup(repo => repo.GetByNameStartingWithAsync("")).ReturnsAsync(new List<Doctor>());
+            _mock.Setup(repo => repo.GetByNameStartingWithAsync("")).ReturnsAsync(new ListDoctorDto());
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.GetByNameStartingWithAsync(""));
 
@@ -267,14 +265,14 @@ namespace tests.UnitTests
             var result = await _service.GetByNameStartingWithAsync("Ca");
 
             Assert.NotNull(result);
-            Assert.Contains(doctors[1], result);
+            Assert.Contains(doctors.doctorList[1], result.doctorList);
         }
 
         [Fact]
         public async Task GetByPatientIntervalAsync_ItemDoesNotExist()
         {
 
-            _mock.Setup(repo=>repo.GetByPatientIntervalAsync(4,2)).ReturnsAsync(new List<Doctor>());
+            _mock.Setup(repo=>repo.GetByPatientIntervalAsync(4,2)).ReturnsAsync(new ListDoctorDto());
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(()=>_service.GetByPatientIntervalAsync(4,2));
 
@@ -293,7 +291,7 @@ namespace tests.UnitTests
             var result = await _service.GetByPatientIntervalAsync(1, 4);
 
             Assert.NotNull(result);
-            Assert.Contains(doctors[1], result);
+            Assert.Contains(doctors.doctorList[1], result.doctorList);
 
         }
 
@@ -301,7 +299,7 @@ namespace tests.UnitTests
         public async Task GetByTypeWithMinPatientsAsync_ItemDoesNotExist()
         {
 
-            _mock.Setup(repo => repo.GetByTypeWithMinPatientsAsync("", 3)).ReturnsAsync(new List<Doctor>());
+            _mock.Setup(repo => repo.GetByTypeWithMinPatientsAsync("", 3)).ReturnsAsync(new ListDoctorDto());
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.GetByTypeWithMinPatientsAsync("", 3));
 
@@ -319,7 +317,7 @@ namespace tests.UnitTests
             var result = await _service.GetByTypeWithMinPatientsAsync("oftalmolog", 2);
 
             Assert.NotNull(result);
-            Assert.Contains(doctors[1], result);
+            Assert.Contains(doctors.doctorList[1], result.doctorList);
 
         }
 

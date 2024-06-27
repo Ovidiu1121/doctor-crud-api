@@ -5,9 +5,9 @@ namespace DoctorCrudApi.Doctors.Service.interfaces
 {
     public interface IDoctorCommandService
     {
-        Task<Doctor> CreateDoctor(CreateDoctorRequest request);
-        Task<Doctor> UpdateDoctor(int id, UpdateDoctorRequest request);
-        Task<Doctor> DeleteDoctor(int id);
+        Task<DoctorDto> CreateDoctor(CreateDoctorRequest request);
+        Task<DoctorDto> UpdateDoctor(int id, UpdateDoctorRequest request);
+        Task<DoctorDto> DeleteDoctor(int id);
 
     }
 }

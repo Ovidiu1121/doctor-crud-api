@@ -1,6 +1,7 @@
 ﻿using DoctorCrudApi.Doctors.Model;
 using DoctorCrudApi.Doctors.Repository.interfaces;
 using DoctorCrudApi.Doctors.Service.interfaces;
+using DoctorCrudApi.Dto;
 using DoctorCrudApi.System.Constant;
 using DoctorCrudApi.System.Exceptions;
 
@@ -38,45 +39,44 @@ namespace DoctorCrudApi.Doctors.Service
             return result;
         }
 
-        public async Task<IEnumerable<Doctor>> GetAll()
+        public async Task<ListDoctorDto> GetAll()
         {
-            IEnumerable<Doctor> doctors = await _repository.GetAllAsync();
+            ListDoctorDto doctors = await _repository.GetAllAsync();
 
-            if (doctors.Count().Equals(0))
+            if (doctors.doctorList.Count==0) 
             {
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
-
+            
             return doctors;
         }
 
-        public async Task<IEnumerable<Doctor>> GetAllSortedByPatientsAscAsync()
+        public async Task<ListDoctorDto> GetAllSortedByPatientsAscAsync()
         {
-            IEnumerable<Doctor> doctors = await _repository.GetAllSortedByPatientsAscAsync();
-
-            if (doctors.Count().Equals(0))
+            ListDoctorDto doctors = await _repository.GetAllSortedByPatientsAscAsync();
+            
+            if (doctors.doctorList.Count==0)
             {
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
-
             return doctors;
         }
 
-        public async Task<IEnumerable<Doctor>> GetAllSortedByPatientsDescAsync()
+        public async Task<ListDoctorDto> GetAllSortedByPatientsDescAsync()
         {
-            IEnumerable<Doctor> doctors = await _repository.GetAllSortedByPatientsDescAsync();
-
-            if (doctors.Count().Equals(0))
+            ListDoctorDto doctors = await _repository.GetAllSortedByPatientsDescAsync();
+            
+            if (doctors.doctorList.Count==0)
             {
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
-
+            
             return doctors;
         }
 
-        public async Task<Doctor> GetById(int id)
+        public async Task<DoctorDto> GetById(int id)
         {
-            Doctor doc = await _repository.GetByIdAsync(id);
+            DoctorDto doc = await _repository.GetByIdAsync(id);
 
             if (doc == null)
             {
@@ -86,9 +86,9 @@ namespace DoctorCrudApi.Doctors.Service
             return doc;
         }
 
-        public async Task<Doctor> GetByNameAsync(string name)
+        public async Task<DoctorDto> GetByNameAsync(string name)
         {
-            Doctor doc = await _repository.GetByNameAsync(name);
+            DoctorDto doc = await _repository.GetByNameAsync(name);
 
             if (doc == null)
             {
@@ -98,52 +98,52 @@ namespace DoctorCrudApi.Doctors.Service
             return doc;
         }
 
-        public async Task<IEnumerable<Doctor>> GetByNameStartingWithAsync(string prefix)
+        public async Task<ListDoctorDto> GetByNameStartingWithAsync(string prefix)
         {
-            IEnumerable<Doctor> doctors = await _repository.GetByNameStartingWithAsync(prefix);
+            ListDoctorDto doctors = await _repository.GetByNameStartingWithAsync(prefix);
 
-            if (doctors.Count().Equals(0))
+            if (doctors.doctorList.Count==0)
             {
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
-
+            
             return doctors;
         }
 
-        public async Task<IEnumerable<Doctor>> GetByPatientIntervalAsync(int minPatients, int maxPatients)
+        public async Task<ListDoctorDto> GetByPatientIntervalAsync(int minPatients, int maxPatients)
         {
-            IEnumerable<Doctor> doctors = await _repository.GetByPatientIntervalAsync(minPatients, maxPatients);
+            ListDoctorDto doctors = await _repository.GetByPatientIntervalAsync(minPatients, maxPatients);
 
-            if (doctors.Count().Equals(0))
+            if (doctors.doctorList.Count==0)
             {
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
-
+            
             return doctors;
 
         }
 
-        public async Task<Doctor> GetByType(string type)
+        public async Task<ListDoctorDto> GetByType(string type)
         {
-            Doctor doctors = await _repository.GetByTypeAsync(type);
+            ListDoctorDto doctors = await _repository.GetByTypeAsync(type);
 
-            if (doctors == null)
+            if (doctors.doctorList.Count==0)
             {
                 throw new ItemDoesNotExist(Constants.DOCTOR_DOES_NOT_EXIST);
             }
-
+            
             return doctors;
         }
 
-        public async Task<IEnumerable<Doctor>> GetByTypeWithMinPatientsAsync(string type, int minPatients)
+        public async Task<ListDoctorDto> GetByTypeWithMinPatientsAsync(string type, int minPatients)
         {
-            IEnumerable<Doctor> doctors = await _repository.GetByTypeWithMinPatientsAsync(type,minPatients);
+            ListDoctorDto doctors = await _repository.GetByTypeWithMinPatientsAsync(type,minPatients);
 
-            if (doctors.Count().Equals(0))
+            if (doctors.doctorList.Count==0)
             {
                 throw new ItemDoesNotExist(Constants.NO_DOCTORS_EXIST);
             }
-
+            
             return doctors;
         }
     }

@@ -18,13 +18,13 @@ namespace DoctorCrudApi.Controllers
            _doctorQueryService = doctorQueryService;
         }
 
-        public override async Task<ActionResult<Doctor>> CreateDoctor([FromBody] CreateDoctorRequest request)
+        public override async Task<ActionResult<DoctorDto>> CreateDoctor([FromBody] CreateDoctorRequest request)
         {
             try
             {
                 var doctors = await _doctorCommandService.CreateDoctor(request);
 
-                return Ok(doctors);
+                return Created("Doctorul a fost adaugat",doctors);
             }
             catch (ItemAlreadyExists ex)
             {
@@ -32,13 +32,13 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<Doctor>> DeleteDoctor([FromRoute] int id)
+        public override async Task<ActionResult<DoctorDto>> DeleteDoctor([FromRoute] int id)
         {
             try
             {
-                var doctors = await _doctorCommandService.DeleteDoctor(id);
+                var doctor = await _doctorCommandService.DeleteDoctor(id);
 
-                return Accepted("", doctors);
+                return Accepted("doctorul a fost sters", doctor);
             }
             catch (ItemDoesNotExist ex)
             {
@@ -74,7 +74,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<IEnumerable<Doctor>>> GetAll()
+        public override async Task<ActionResult<ListDoctorDto>> GetAll()
         {
             try
             {
@@ -87,7 +87,20 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<IEnumerable<Doctor>>> GetAllSortedByPatientsAsc()
+        public override async Task<ActionResult<DoctorDto>> GetByIdRoute(int id)
+        {
+            try
+            {
+                var doc = await _doctorQueryService.GetById(id);
+                return Ok(doc);
+            }
+            catch (ItemDoesNotExist ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        public override async Task<ActionResult<ListDoctorDto>> GetAllSortedByPatientsAsc()
         {
             try
             {
@@ -100,7 +113,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<IEnumerable<Doctor>>> GetAllSortedByPatientsDesc()
+        public override async Task<ActionResult<ListDoctorDto>> GetAllSortedByPatientsDesc()
         {
             try
             {
@@ -113,7 +126,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<Doctor>> GetByNameRoute([FromRoute] string name)
+        public override async Task<ActionResult<DoctorDto>> GetByNameRoute([FromRoute] string name)
         {
             try
             {
@@ -126,7 +139,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<IEnumerable<Doctor>>> GetByNameStartingWith(string prefix)
+        public override async Task<ActionResult<ListDoctorDto>> GetByNameStartingWith(string prefix)
         {
             try
             {
@@ -139,7 +152,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<IEnumerable<Doctor>>> GetByPatientInterval(int minPatients, int maxPatients)
+        public override async Task<ActionResult<ListDoctorDto>> GetByPatientInterval(int minPatients, int maxPatients)
         {
             try
             {
@@ -152,7 +165,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<Doctor>> GetByTypeRoute([FromRoute] string type)
+        public override async Task<ActionResult<ListDoctorDto>> GetByTypeRoute([FromRoute] string type)
         {
             try
             {
@@ -165,7 +178,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<IEnumerable<Doctor>>> GetByTypeWithMinPatients(string type, int minPatients)
+        public override async Task<ActionResult<ListDoctorDto>> GetByTypeWithMinPatients(string type, int minPatients)
         {
             try
             {
@@ -178,7 +191,7 @@ namespace DoctorCrudApi.Controllers
             }
         }
 
-        public override async Task<ActionResult<Doctor>> UpdateDoctor([FromRoute] int id, [FromBody] UpdateDoctorRequest request)
+        public override async Task<ActionResult<DoctorDto>> UpdateDoctor([FromRoute] int id, [FromBody] UpdateDoctorRequest request)
         {
             try
             {

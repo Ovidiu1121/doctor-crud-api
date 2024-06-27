@@ -58,9 +58,9 @@ namespace tests.UnitTests
 
             var okresult = Assert.IsType<OkObjectResult>(result.Result);
 
-            var doctorsAll = Assert.IsType<List<Doctor>>(okresult.Value);
+            var doctorsAll = Assert.IsType<ListDoctorDto>(okresult.Value);
 
-            Assert.Equal(5, doctorsAll.Count);
+            Assert.Equal(5, doctorsAll.doctorList.Count);
             Assert.Equal(200, okresult.StatusCode);
 
 
@@ -109,9 +109,9 @@ namespace tests.UnitTests
 
             var result = await _controller.CreateDoctor(create);
 
-            var okResult= Assert.IsType<OkObjectResult>(result.Result);
+            var okResult= Assert.IsType<CreatedResult>(result.Result);
 
-            Assert.Equal(okResult.StatusCode, 200);
+            Assert.Equal(okResult.StatusCode, 201);
             Assert.Equal(doctor, okResult.Value);
 
         }
@@ -178,7 +178,6 @@ namespace tests.UnitTests
         [Fact]
         public async Task Delete_ValidData()
         {
-
             var doctor = TestDoctorFactory.CreateDoctor(1);
 
             _command.Setup(repo => repo.DeleteDoctor(1)).ReturnsAsync(doctor);

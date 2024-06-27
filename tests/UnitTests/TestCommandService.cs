@@ -39,7 +39,7 @@ namespace tests.UnitTests
 
             var doctor = TestDoctorFactory.CreateDoctor(5);
 
-            _mock.Setup(repo => repo.GetByTypeAsync("test")).ReturnsAsync(doctor);
+            _mock.Setup(repo => repo.GetByNameAsync("Test")).ReturnsAsync(doctor);
                 
            var exception=  await Assert.ThrowsAsync<ItemAlreadyExists>(()=>_service.CreateDoctor(create));
 
@@ -82,7 +82,7 @@ namespace tests.UnitTests
                 Patients = 2000
             };
 
-            _mock.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync((Doctor)null);
+            _mock.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync((DoctorDto)null);
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.UpdateDoctor(1, update));
 
@@ -98,7 +98,7 @@ namespace tests.UnitTests
                 Patients = 0
             };
 
-            _mock.Setup(repo=>repo.GetByIdAsync(1)).ReturnsAsync((Doctor)null);
+            _mock.Setup(repo=>repo.GetByIdAsync(1)).ReturnsAsync((DoctorDto)null);
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.UpdateDoctor(5, update));
 
@@ -132,7 +132,7 @@ namespace tests.UnitTests
         public async Task Delete_ItemDoesNotExist()
         {
 
-            _mock.Setup(repo => repo.DeleteDoctorById(It.IsAny<int>())).ReturnsAsync((Doctor)null);
+            _mock.Setup(repo => repo.DeleteDoctorById(It.IsAny<int>())).ReturnsAsync((DoctorDto)null);
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _service.DeleteDoctor(5));
 

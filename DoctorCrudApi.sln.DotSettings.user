@@ -1,0 +1,19 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\Utilizator\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_DoctorCrudApi.1595032551\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1cda0e7c_002D810e_002D4104_002Daf5d_002Df130ed577b34/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Data\asp.net\crud-apis\More-Examples\DoctorCrudApi\tests" Presentation="&amp;lt;tests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5ef8f66c_002D2b51_002D431a_002D822a_002D3ff1ad58ae1e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Get_GetById_ValidRequest_ReturnsOKStatusCode #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::483456F3-96B5-4BA8-B627-EF4FE119B351::net6.0::tests.IntegrationTests.DoctorIntegrationTests.Get_GetById_ValidRequest_ReturnsOKStatusCode&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=721e069f_002Dcbc6_002D4a11_002D9c42_002D2d2a279208de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Get_GetById_ValidRequest_ReturnsOKStatusCode" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::483456F3-96B5-4BA8-B627-EF4FE119B351::net6.0::tests.IntegrationTests.DoctorIntegrationTests.Get_GetById_ValidRequest_ReturnsOKStatusCode&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::483456F3-96B5-4BA8-B627-EF4FE119B351::net6.0::tests.IntegrationTests.DoctorIntegrationTests.Get_GetById_DoctorDoesExists_ReturnsNotFoundStatusCode&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=817f127b_002De26e_002D47e7_002Db028_002D48f821aa3c8c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;tests&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Data\asp.net\crud-apis\More-Examples\DoctorCrudApi\tests" Presentation="&amp;lt;tests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

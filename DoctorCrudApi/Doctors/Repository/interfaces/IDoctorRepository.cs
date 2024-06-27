@@ -5,18 +5,18 @@ namespace DoctorCrudApi.Doctors.Repository.interfaces
 {
     public interface IDoctorRepository
     {
-        Task<IEnumerable<Doctor>> GetAllAsync();
-        Task<Doctor> GetByTypeAsync(string type);
-        Task<Doctor> GetByIdAsync(int id);
-        Task<Doctor> CreateDoctor(CreateDoctorRequest request);
-        Task<Doctor> UpdateDoctor(int id, UpdateDoctorRequest request);
-        Task<Doctor> DeleteDoctorById(int id);
-        Task<IEnumerable<Doctor>> GetAllSortedByPatientsAscAsync();
-        Task<IEnumerable<Doctor>> GetAllSortedByPatientsDescAsync();
-        Task<Doctor> GetByNameAsync(string name);
-        Task<IEnumerable<Doctor>> GetByNameStartingWithAsync(string prefix);
-        Task<IEnumerable<Doctor>> GetByPatientIntervalAsync(int minPatients, int maxPatients);
-        Task<IEnumerable<Doctor>> GetByTypeWithMinPatientsAsync(string type, int minPatients);
+        Task<ListDoctorDto> GetAllAsync();
+        Task<ListDoctorDto> GetByTypeAsync(string type);
+        Task<DoctorDto> GetByIdAsync(int id);
+        Task<DoctorDto> CreateDoctor(CreateDoctorRequest request);
+        Task<DoctorDto> UpdateDoctor(int id, UpdateDoctorRequest request);
+        Task<DoctorDto> DeleteDoctorById(int id);
+        Task<ListDoctorDto> GetAllSortedByPatientsAscAsync();
+        Task<ListDoctorDto> GetAllSortedByPatientsDescAsync();
+        Task<DoctorDto> GetByNameAsync(string name);
+        Task<ListDoctorDto> GetByNameStartingWithAsync(string prefix);
+        Task<ListDoctorDto> GetByPatientIntervalAsync(int minPatients, int maxPatients);
+        Task<ListDoctorDto> GetByTypeWithMinPatientsAsync(string type, int minPatients);
         Task<bool> DoctorExistsByIdAsync(int id);
         Task<bool> DoctorExistsByNameAsync(string name);
     } 

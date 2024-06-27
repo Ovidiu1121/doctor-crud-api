@@ -17,18 +17,18 @@ namespace DoctorCrudApi.Doctors.Repository
             _context = context;
             _mapper = mapper;
         }
-        public async Task<Doctor> CreateDoctor(CreateDoctorRequest request)
+        public async Task<DoctorDto> CreateDoctor(CreateDoctorRequest request)
         {
-            var doc = _mapper.Map<Doctor>(request);
+                var doc = _mapper.Map<Doctor>(request);
 
             _context.Doctors.Add(doc);
 
             await _context.SaveChangesAsync();
 
-            return doc;
+            return _mapper.Map<DoctorDto>(doc);
         }
 
-        public async Task<Doctor> DeleteDoctorById(int id)
+        public async Task<DoctorDto> DeleteDoctorById(int id)
         {
             var doc = await _context.Doctors.FindAsync(id);
 
@@ -36,7 +36,7 @@ namespace DoctorCrudApi.Doctors.Repository
 
             await _context.SaveChangesAsync();
 
-            return doc;
+            return _mapper.Map<DoctorDto>(doc);
         }
 
         public async Task<bool> DoctorExistsByIdAsync(int id)
@@ -49,52 +49,110 @@ namespace DoctorCrudApi.Doctors.Repository
             return await _context.Doctors.AnyAsync(d => d.Name == name);
         }
 
-        public async Task<IEnumerable<Doctor>> GetAllAsync()
+        public async Task<ListDoctorDto> GetAllAsync()
         {
-            return await _context.Doctors.ToListAsync();
+            List<Doctor> result = await _context.Doctors.ToListAsync();
+            
+            ListDoctorDto listDoctorDto = new ListDoctorDto()
+            {
+                doctorList = _mapper.Map<List<DoctorDto>>(result)
+            };
+
+            return listDoctorDto;
         }
 
-        public async Task<IEnumerable<Doctor>> GetAllSortedByPatientsAscAsync()
+        public async Task<ListDoctorDto> GetAllSortedByPatientsAscAsync()
         {
-            return await _context.Doctors.OrderBy(d => d.Patients).ToListAsync();
+            List<Doctor> result = await _context.Doctors.ToListAsync();
+
+            ListDoctorDto listDoctorDto = new ListDoctorDto()
+            {
+                doctorList = _mapper.Map<List<DoctorDto>>(result).OrderBy(d=>d.Patients).ToList()
+            };
+
+            return listDoctorDto;
         }
 
-        public async Task<IEnumerable<Doctor>> GetAllSortedByPatientsDescAsync()
+        public async Task<ListDoctorDto> GetAllSortedByPatientsDescAsync()
         {
-            return await _context.Doctors.OrderByDescending(d => d.Patients).ToListAsync();
+            List<Doctor> result = await _context.Doctors.ToListAsync();
+
+            ListDoctorDto listDoctorDto = new ListDoctorDto()
+            {
+                doctorList = _mapper.Map<List<DoctorDto>>(result).OrderByDescending(d => d.Patients).ToList()
+            };
+
+            return listDoctorDto;
         }
 
-        public  async Task<Doctor> GetByIdAsync(int id)
+        public  async Task<DoctorDto> GetByIdAsync(int id)
         {
-            return await _context.Doctors.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            var doctor = await _context.Doctors.Where(dc => dc.Id == id).FirstOrDefaultAsync();
+            
+            return _mapper.Map<DoctorDto>(doctor);
         }
 
-        public async Task<Doctor> GetByNameAsync(string name)
+        public async Task<DoctorDto> GetByNameAsync(string name)
         {
-            return _context.Doctors.FirstOrDefault(x => x.Name.Equals(name));
+            var doctor = await _context.Doctors.Where(dc => dc.Name.Equals(name)).FirstOrDefaultAsync();
+            
+            return _mapper.Map<DoctorDto>(doctor);
         }
 
-        public async Task<IEnumerable<Doctor>> GetByNameStartingWithAsync(string prefix)
+        public async Task<ListDoctorDto> GetByNameStartingWithAsync(string prefix)
         {
-            return await _context.Doctors.Where(d => d.Name.StartsWith(prefix)).ToListAsync();
+            List<Doctor> result = await _context.Doctors.ToListAsync();
+
+            ListDoctorDto listDoctorDto = new ListDoctorDto()
+            {
+                doctorList = _mapper.Map<List<DoctorDto>>(result).Where(d => d.Name.StartsWith(prefix)).ToList()
+            };
+
+            return listDoctorDto;
+
         }
 
-        public async Task<IEnumerable<Doctor>> GetByPatientIntervalAsync(int minPatients, int maxPatients)
+        public async Task<ListDoctorDto> GetByPatientIntervalAsync(int minPatients, int maxPatients)
         {
-            return await _context.Doctors.Where(d => d.Patients >= minPatients && d.Patients <= maxPatients).ToListAsync();
+            List<Doctor> result = await _context.Doctors.ToListAsync();
+
+            ListDoctorDto listDoctorDto = new ListDoctorDto()
+            {
+                doctorList = _mapper.Map<List<DoctorDto>>(result)
+                    .Where(d => d.Patients >= minPatients && d.Patients <= maxPatients).ToList()
+            };
+
+            return listDoctorDto;
         }
 
-        public  async Task<Doctor> GetByTypeAsync(string type)
+        public  async Task<ListDoctorDto> GetByTypeAsync(string type)
         {
-            return _context.Doctors.FirstOrDefault(x => x.Type.Equals(type));
+            List<Doctor> result = await _context.Doctors.ToListAsync();
+
+            ListDoctorDto listDoctorDto = new ListDoctorDto()
+            {
+                doctorList = _mapper.Map<List<DoctorDto>>(result).Where(d => d.Type.Equals(type)).ToList()
+            };
+
+            return listDoctorDto;
+
         }
 
-        public async Task<IEnumerable<Doctor>> GetByTypeWithMinPatientsAsync(string type, int minPatients)
+        public async Task<ListDoctorDto> GetByTypeWithMinPatientsAsync(string type, int minPatients)
         {
-            return await _context.Doctors.Where(d => d.Type == type && d.Patients >= minPatients).ToListAsync();
+            List<Doctor> result = await _context.Doctors.ToListAsync();
+
+            ListDoctorDto listDoctorDto = new ListDoctorDto()
+            {
+                doctorList = _mapper.Map<List<DoctorDto>>(result)
+                    .Where(d => d.Type.Equals(type) && d.Patients >= minPatients).ToList()
+            };
+
+            return listDoctorDto;
+
         }
 
-        public async Task<Doctor> UpdateDoctor(int id, UpdateDoctorRequest request)
+        public async Task<DoctorDto> UpdateDoctor(int id, UpdateDoctorRequest request)
         {
             var doc = await _context.Doctors.FindAsync(id);
 
@@ -104,7 +162,7 @@ namespace DoctorCrudApi.Doctors.Repository
 
             await _context.SaveChangesAsync();
 
-            return doc;
+            return _mapper.Map<DoctorDto>(doc);
         }
     }
 }

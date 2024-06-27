@@ -16,9 +16,9 @@ namespace DoctorCrudApi.Doctors.Service
             _repository = repository;
         }
 
-        public async Task<Doctor> CreateDoctor(CreateDoctorRequest request)
+        public async Task<DoctorDto> CreateDoctor(CreateDoctorRequest request)
         {
-            Doctor doc = await _repository.GetByTypeAsync(request.Type);
+            DoctorDto doc = await _repository.GetByNameAsync(request.Name);
 
             if (doc!=null)
             {
@@ -29,9 +29,9 @@ namespace DoctorCrudApi.Doctors.Service
             return doc;
         }
 
-        public async Task<Doctor> DeleteDoctor(int id)
+        public async Task<DoctorDto> DeleteDoctor(int id)
         {
-            Doctor doc = await _repository.GetByIdAsync(id);
+            DoctorDto doc = await _repository.GetByIdAsync(id);
 
             if (doc==null)
             {
@@ -42,9 +42,9 @@ namespace DoctorCrudApi.Doctors.Service
             return doc;
         }
 
-        public async Task<Doctor> UpdateDoctor(int id, UpdateDoctorRequest request)
+        public async Task<DoctorDto> UpdateDoctor(int id, UpdateDoctorRequest request)
         {
-            Doctor doc = await _repository.GetByIdAsync(id);
+            DoctorDto doc = await _repository.GetByIdAsync(id);
 
             if (doc==null)
             {

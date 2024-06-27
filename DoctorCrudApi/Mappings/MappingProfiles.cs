@@ -10,6 +10,7 @@ namespace DoctorCrudApi.Mappings
         {
             CreateMap<CreateDoctorRequest, Doctor>();
             CreateMap<UpdateDoctorRequest, Doctor>();
+            CreateMap<DoctorDto, Doctor>().ReverseMap();
         }
     }
 }
