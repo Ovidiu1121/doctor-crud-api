@@ -8,12 +8,9 @@
     &lt;TestId&gt;xUnit::483456F3-96B5-4BA8-B627-EF4FE119B351::net6.0::tests.IntegrationTests.DoctorIntegrationTests.Get_GetById_ValidRequest_ReturnsOKStatusCode&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=721e069f_002Dcbc6_002D4a11_002D9c42_002D2d2a279208de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Get_GetById_ValidRequest_ReturnsOKStatusCode" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::483456F3-96B5-4BA8-B627-EF4FE119B351::net6.0::tests.IntegrationTests.DoctorIntegrationTests.Get_GetById_ValidRequest_ReturnsOKStatusCode&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::483456F3-96B5-4BA8-B627-EF4FE119B351::net6.0::tests.IntegrationTests.DoctorIntegrationTests.Get_GetById_DoctorDoesExists_ReturnsNotFoundStatusCode&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=721e069f_002Dcbc6_002D4a11_002D9c42_002D2d2a279208de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Get_GetById_ValidRequest_ReturnsOKStatusCode" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Data\asp.net\crud-apis\More-Examples\DoctorCrudApi\tests" Presentation="&amp;lt;tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=817f127b_002De26e_002D47e7_002Db028_002D48f821aa3c8c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;tests&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=817f127b_002De26e_002D47e7_002Db028_002D48f821aa3c8c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;tests&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Data\asp.net\crud-apis\More-Examples\DoctorCrudApi\tests" Presentation="&amp;lt;tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
